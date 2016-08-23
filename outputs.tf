@@ -43,3 +43,7 @@ output "5d. Monitor server intern adres" {
 output "5e. Windows server intern adres" {
     value = "${var.win1_ip_address}"
 }
+output "6a. Windows server password" {
+    value = "nova get-password ${var.customer}-${var.environment}-${var.win1_hostname} ~/.ssh/id_rsa.terraform"
+}
+
