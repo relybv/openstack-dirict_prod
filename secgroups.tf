@@ -160,6 +160,18 @@ resource "openstack_compute_secgroup_v2" "monitor" {
     cidr = "${var.secgroup_back_cidr}"
   }
   rule {
+    from_port = 1
+    to_port = 65535
+    ip_protocol = "udp"
+    cidr = "${var.secgroup_front_cidr}"
+  }
+  rule {
+    from_port = 1
+    to_port = 65535
+    ip_protocol = "udp"
+    cidr = "${var.secgroup_back_cidr}"
+  }
+  rule {
       from_port = 1
       to_port = 65535
       ip_protocol = "tcp"
