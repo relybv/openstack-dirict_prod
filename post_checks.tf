@@ -21,8 +21,8 @@ resource "null_resource" "post_checks_monitor1" {
     cluster_instance_ids = "${openstack_compute_instance_v2.monitor1.id}"
   }
   connection {
-    host = "${openstack_compute_floatingip_v2.jump.address}"
-    user = "${var.mon_username}"
+    host = "${openstack_compute_floatingip_v2.monitor.address}"
+    user = "${var.monitor_username}"
     private_key = "${var.ssh_key_file}"
   }
   provisioner "remote-exec" {
@@ -40,8 +40,8 @@ resource "null_resource" "post_checks_appl1" {
     cluster_instance_ids = "${openstack_compute_instance_v2.appl1.id}"
   }
   connection {
-    bastion_host = "${openstack_compute_floatingip_v2.jump.address}"
-    bastion_user = "${var.jump_username}"
+    bastion_host = "${openstack_compute_floatingip_v2.monitor.address}"
+    bastion_user = "${var.monitor_username}"
     bastion_private_key = "${var.ssh_key_file}"
     host = "${var.appl1_ip_address}"
     user = "${var.appl_username}"
@@ -62,8 +62,8 @@ resource "null_resource" "post_checks_appl2" {
     cluster_instance_ids = "${openstack_compute_instance_v2.appl2.id}"
   }
   connection {
-    bastion_host = "${openstack_compute_floatingip_v2.jump.address}"
-    bastion_user = "${var.jump_username}"
+    bastion_host = "${openstack_compute_floatingip_v2.monitor.address}"
+    bastion_user = "${var.monitor_username}"
     bastion_private_key = "${var.ssh_key_file}"
     host = "${var.appl2_ip_address}"
     user = "${var.appl_username}"
@@ -84,8 +84,8 @@ resource "null_resource" "post_checks_db1" {
     cluster_instance_ids = "${openstack_compute_instance_v2.db1.id}"
   }
   connection {
-    bastion_host = "${openstack_compute_floatingip_v2.jump.address}"
-    bastion_user = "${var.jump_username}"
+    bastion_host = "${openstack_compute_floatingip_v2.monitor.address}"
+    bastion_user = "${var.monitor_username}"
     bastion_private_key = "${var.ssh_key_file}"
     host = "${var.db1_ip_address}"
     user = "${var.db_username}"

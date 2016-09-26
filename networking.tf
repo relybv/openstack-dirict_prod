@@ -12,13 +12,7 @@ resource "openstack_networking_network_v2" "backend" {
   region = "${var.region}"
   admin_state_up = "true"
 }
-/*
-resource "openstack_networking_network_v2" "jump" {
-  name = "jump_${var.customer}_${var.environment}"
-  region = "${var.region}"
-  admin_state_up = "true"
-}
-*/
+
 #
 # Subnet definitions
 #

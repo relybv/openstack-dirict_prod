@@ -40,13 +40,6 @@ resource "template_file" "init_monitor" {
     template = "${file("init_monitor.tpl")}"
 }
 
-# Template for jump cloud-init bash
-resource "template_file" "init_jump" {
-    template = "${file("init_jump.tpl")}"
-    vars {
-    }
-}
-
 # Template for win cloud-init powershell
 resource "template_file" "init_win" {
     template = "${file("init_win.tpl")}"

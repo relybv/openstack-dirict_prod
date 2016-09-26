@@ -17,14 +17,6 @@ resource "aws_route53_record" "ext_lb_name" {
    records = ["${openstack_compute_floatingip_v2.lb.address}"]
 }
 
-# Create A record for external load balancer address
-resource "aws_route53_record" "ext_jump_name" {
-   zone_id = "${var.aws_zone_id}"
-   name = "${var.jump1_hostname}.${var.environment}.${var.customer}.${var.domain_base}"
-   type = "A"
-   ttl = "10"
-   records = ["${openstack_compute_floatingip_v2.jump.address}"]
-}
 # Create NS record for environment
 resource "aws_route53_record" "environment-ns" {
    zone_id = "${var.aws_zone_id}"

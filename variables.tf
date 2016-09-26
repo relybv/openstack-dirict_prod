@@ -37,7 +37,7 @@ variable "ssh_key_file" {
 
 # Variables for terraform remote state
 variable "swift_bucket_name" {
-    default = "terraform-state-backend"
+    default = "terraform-state-dirict-prod"
 }
 variable "swift_key" {
     default = "/tfpat4.tfstate"
@@ -61,10 +61,7 @@ variable "monitor_storage" {
 variable "lb_username" {
     default = "ubuntu"
 }
-variable "mon_username" {
-    default = "ubuntu"
-}
-variable "jump_username" {
+variable "monitor_username" {
     default = "ubuntu"
 }
 variable "appl_username" {
@@ -96,9 +93,6 @@ variable "db1_hostname" {
 variable "monitor1_hostname" {
     default = "monitor1"
 }
-variable "jump1_hostname" {
-    default = "jumphost"
-}
 variable "win1_hostname" {
     default = "win1"
 }
@@ -109,9 +103,6 @@ variable "main_subnet" {
 }
 variable "main_net" {
     default = "172.0"
-}
-variable "jump_ip_address" {
-    default = "172.0.30.20"
 }
 variable "monitor1_ip_address" {
     default = "172.0.10.201"
@@ -147,21 +138,6 @@ variable "secgroup_front_cidr" {
 }
 variable "secgroup_back_cidr" {
     default = "172.0.20.0/24"
-}
-variable "secgroup_jump_cidr" {
-    default = "172.0.30.0/24"
-}
-############### adjust as needed ###############
-variable "db_vol_gb" {
-    default = 10
-}
-
-variable "nfs_vol_gb" {
-    default = 10
-}
-
-variable "es_vol_gb" {
-    default = 10
 }
 
 ############### NFS mount points appl ###############
@@ -200,7 +176,7 @@ variable "nfs_vol_gb" {
     default = 10
 }
 variable "es_vol_gb" {
-    default = 10
+    default = 100
 }
 
 ############### Environment settings for Rely_openstack DirICT ###################
@@ -233,11 +209,11 @@ variable "image_ub" {
 }
 
 variable "image_win" {
-    default = "Windows Server 2012 R2 Std Eval"
+    default = "win2012-dirict"
 }
 
 variable "flavor_appl" {
-    default = "ha_localdisk.2c.4r.20h"
+    default = "ha_localdisk.4c.16r.60h"
 }
 
 variable "flavor_db" {
@@ -256,6 +232,3 @@ variable "flavor_lb" {
     default = "ha_localdisk.1c.1r.20h"
 }
 
-variable "flavor_jump" {
-    default = "ha_localdisk.1c.1r.20h"
-}

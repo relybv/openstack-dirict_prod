@@ -14,19 +14,19 @@ output "2b. Load balancer publiek IP" {
     value = "${openstack_compute_floatingip_v2.lb.address}"
 }
 output "3a. Jump host publiek IP" {
-    value = "${openstack_compute_floatingip_v2.jump.address}"
+    value = "${openstack_compute_floatingip_v2.monitor.address}"
 }
 output "4a. SSH connect string appl1 server" {
-    value = "ssh -i ${var.ssh_key_file} ${var.appl_username}@${var.appl1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.appl1_ip_address}:22' "
+    value = "ssh -i ${var.ssh_key_file} ${var.appl_username}@${var.appl1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.monitor_username}@${openstack_compute_floatingip_v2.monitor.address} -W ${var.appl1_ip_address}:22' "
 }
 output "4b. SSH connect string appl2 server" {
-    value = "ssh -i ${var.ssh_key_file} ${var.appl_username}@${var.appl2_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.appl2_ip_address}:22' "
+    value = "ssh -i ${var.ssh_key_file} ${var.appl_username}@${var.appl2_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.monitor_username}@${openstack_compute_floatingip_v2.monitor.address} -W ${var.appl2_ip_address}:22' "
 }
 output "4c. SSH connect string db server" {
-    value = "ssh -i ${var.ssh_key_file} ${var.db_username}@${var.db1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.db1_ip_address}:22' "
+    value = "ssh -i ${var.ssh_key_file} ${var.db_username}@${var.db1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.monitor_username}@${openstack_compute_floatingip_v2.monitor.address} -W ${var.db1_ip_address}:22' "
 }
 output "4d. SSH connect string monitor server" {
-    value = "ssh -i ${var.ssh_key_file} ${var.mon_username}@${var.monitor1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.monitor1_ip_address}:22' "
+    value = "ssh -i ${var.ssh_key_file} ${var.monitor_username}@${var.monitor1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.monitor_username}@${openstack_compute_floatingip_v2.monitor.address} -W ${var.monitor1_ip_address}:22' "
 }
 output "5a. Appl1 server intern adres" {
     value = "${var.appl1_ip_address}"

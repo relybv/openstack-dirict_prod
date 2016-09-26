@@ -79,7 +79,7 @@ resource "openstack_compute_instance_v2" "monitor1" {
   flavor_name = "${var.flavor_mon}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
   security_groups = [ "${openstack_compute_secgroup_v2.monitor.name}" ]
-  floating_ip = "${openstack_compute_floatingip_v2.jump.address}"
+  floating_ip = "${openstack_compute_floatingip_v2.monitor.address}"
   user_data = "${template_file.init_monitor.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.frontend.id}"
@@ -91,14 +91,14 @@ resource "openstack_compute_instance_v2" "monitor1" {
   }
 }
 
-resource "openstack_compute_instance_v2" "win1" {
+ resource "openstack_compute_instance_v2" "win1" {
   name = "${var.customer}-${var.environment}-${var.win1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_win}"
   flavor_name = "${var.flavor_win}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
   security_groups = [ "${openstack_compute_secgroup_v2.backnet.name}" ]
-  user_data = "${template_file.init_win.rendered}"
+#  user_data = "${template_file.init_win.rendered}"
   depends_on = ["null_resource.post_checks_monitor1"]
   network {
     uuid = "${openstack_networking_network_v2.backend.id}"
