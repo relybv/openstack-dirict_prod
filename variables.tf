@@ -32,7 +32,7 @@ variable "password" {}
 
 # generate your own key
 variable "ssh_key_file" {
-    default = "~/.ssh/id_rsa.terraform"
+    default = "~/.ssh/id_rsa.dirict-prod"
 }
 
 # Variables for terraform remote state
@@ -209,7 +209,7 @@ variable "image_ub" {
 }
 
 variable "image_win" {
-    default = "win2012-dirict"
+    default = "Windows Server 2012 R2 Std Eval"
 }
 
 variable "voll_win" {
