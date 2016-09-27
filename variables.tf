@@ -212,6 +212,10 @@ variable "image_win" {
     default = "win2012-dirict"
 }
 
+variable "voll_win" {
+    default = "06590db3-e4c2-4984-a2c9-ca8354b86a76"
+}
+
 variable "flavor_appl" {
     default = "ha_localdisk.4c.16r.60h"
 }

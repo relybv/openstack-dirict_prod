@@ -94,7 +94,7 @@ resource "openstack_compute_instance_v2" "monitor1" {
  resource "openstack_compute_instance_v2" "win1" {
   name = "${var.customer}-${var.environment}-${var.win1_hostname}"
   region = "${var.region}"
-  image_name = "${var.image_win}"
+#  image_name = "${var.image_win}"
   flavor_name = "${var.flavor_win}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
   security_groups = [ "${openstack_compute_secgroup_v2.backnet.name}" ]
@@ -103,5 +103,13 @@ resource "openstack_compute_instance_v2" "monitor1" {
   network {
     uuid = "${openstack_networking_network_v2.backend.id}"
     fixed_ip_v4 = "${var.win1_ip_address}"
+  }
+  block_device {
+    uuid = "${var.voll_win}"
+    source_type = "volume"
+    volume_size = 60
+    boot_index = 0
+    destination_type = "volume"
+    delete_on_termination = false
   }
  }
