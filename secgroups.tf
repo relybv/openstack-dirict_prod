@@ -103,7 +103,7 @@ resource "openstack_compute_secgroup_v2" "lb" {
     from_port = 22
     to_port = 22
     ip_protocol = "tcp"
-    cidr = "0.0.0.0/0"
+    cidr = "82.161.179.22/32"
   }
   rule {
     from_port = 1
